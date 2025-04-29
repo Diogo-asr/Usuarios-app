@@ -1,0 +1,17 @@
+<div class="container">
+    <h1>Gerenciador de Usuários</h1>
+  
+    <form (ngSubmit)="adicionarUsuario()" class="formulario">
+      <input type="text" placeholder="Nome" [(ngModel)]="nome" name="nome" required />
+      <input type="email" placeholder="Email" [(ngModel)]="email" name="email" required />
+      <button type="submit">Adicionar Usuário</button>
+    </form>
+  
+    <ul class="lista-usuarios">
+      <li *ngFor="let usuario of usuarios" class="usuario-item">
+        <span>{{ usuario.name }}</span> | <span>{{ usuario.email }}</span>
+        <button class="btn-deletar" (click)="deletarUsuario(usuario.id)">Deletar</button>
+      </li>
+    </ul>
+  </div>
+  

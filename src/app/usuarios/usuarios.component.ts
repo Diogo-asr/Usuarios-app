@@ -10,6 +10,7 @@ export class UsuariosComponent implements OnInit {
   usuarios: any[] = [];
   nome: string = '';
   email: string = '';
+ idade: number | null = null;
 
   constructor(private usuariosService: UsuariosService) {}
 
@@ -24,18 +25,21 @@ export class UsuariosComponent implements OnInit {
   }
 
   adicionarUsuario() {
-    if (this.nome && this.email) {
+    if (this.nome && this.email && this.idade !== null) {
       const novoUsuario = {
         name: this.nome,
-        email: this.email
+        email: this.email,
+        idade: this.idade
       };
       this.usuariosService.criarUsuario(novoUsuario).subscribe((usuarioCriado) => {
         this.usuarios.push(usuarioCriado);
         this.nome = '';
         this.email = '';
+        this.idade = null; // se usar number | nul
+
       });
     } else {
-      alert('Preencha o nome e o email.');
+      alert('Preencha o nome, o email e a idade.');
     }
   }
 
